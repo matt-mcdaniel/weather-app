@@ -1,0 +1,12 @@
+{
+  "cities": [
+    {
+      "city": "Mountain View",
+      "region": "CA",
+      "country": "United States",
+      "lat": 37.3861,
+      "long": -122.0839,
+      "timezone_id": "America/Los_Angeles"
+    }
+  ]
+}
