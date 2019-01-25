@@ -1,20 +1,5 @@
 const { cities } = require("../cities.json");
-
-function lower(str) {
-  return str.toLowerCase();
-}
-
-function first(arr) {
-  return arr[0];
-}
-
-function last(arr) {
-  return arr[arr.length - 1];
-}
-
-function splitBy(str, delimiter) {
-  return str.split(delimiter);
-}
+const { lower, first, last, splitBy } = require("../lib/util");
 
 const city = {
   getAll: function() {

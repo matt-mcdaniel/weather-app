@@ -6,7 +6,26 @@
       "country": "United States",
       "lat": 37.3861,
       "long": -122.0839,
-      "timezone_id": "America/Los_Angeles"
+      "timezone_id": "America/Los_Angeles",
+      "id": "1"
+    },
+    {
+      "city": "San Diego",
+      "region": "CA",
+      "country": "United States",
+      "lat": 37.3861,
+      "long": -122.0839,
+      "timezone_id": "America/Los_Angeles",
+      "id": "2"
+    },
+    {
+      "city": "Santa Barbara",
+      "region": "CA",
+      "country": "United States",
+      "lat": 37.3861,
+      "long": -122.0839,
+      "timezone_id": "America/Los_Angeles",
+      "id": "3"
     }
   ]
 }
