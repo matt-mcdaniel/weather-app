@@ -1,36 +1,38 @@
-const express = require("express");
-const city = require("./models/city");
-const path = require("path");
+const express = require('express');
+const path = require('path');
+const city = require('./models/city');
 
 const app = express();
 
 const port = process.env.PORT || 3001;
 
-app.get("/api/forecast", (req, res) => {
-  const { query } = req;
-  if (query.location) {
-    res.send(city.findByName(query.location));
-  }
+app.get('/api/forecast', (req, res) => {
+	const { query } = req;
+	if (query.location) {
+		const cityData = city.findByName(query.location);
+		res.send({
+			location: cityData,
+			forecast: null
+		});
+	}
 });
 
-app.get("/api/cities", (req, res) => {
-  res.send(city.getAll());
+app.get('/api/cities', (req, res) => {
+	res.send(city.getAll());
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "./client/build")));
-  // Handle React routing, return all requests to React app
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, './client/build')));
 
-  // Send all requests to built index.html
-  app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "./client/build", "index.html"));
-  });
+	app.get('*', function(req, res) {
+		res.sendFile(path.join(__dirname, './client/build', 'index.html'));
+	});
 }
 
 app.listen(port, err => {
-  if (err) {
-    throw err;
-  }
+	if (err) {
+		throw err;
+	}
 
-  console.log(`Listening at http://localhost:${port}`);
+	console.log(`Listening at http://localhost:${port}`);
 });
