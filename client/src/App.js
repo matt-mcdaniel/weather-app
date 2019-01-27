@@ -64,6 +64,8 @@ class App extends Component {
 	};
 
 	render() {
+		const hasForecastData = !!this.state.forecast.length;
+
 		if (!this.state.cities) {
 			return <div>Loading...</div>;
 		}
@@ -75,7 +77,14 @@ class App extends Component {
 					<select
 						onChange={this.handleChangeCity}
 						value={this.state.activeCityId}
-						style={{ marginBottom: '30px' }}
+						style={{
+							margin: '15px 0 30px',
+							display: 'block',
+							fontSize: '15px',
+							borderColor: 'dodgerblue',
+							height: '40px',
+							minWidth: '250px'
+						}}
 					>
 						{this.state.cities.map(cityData => {
 							return (
@@ -89,11 +98,28 @@ class App extends Component {
 						})}
 					</select>
 				</label>
-				<div style={{ display: 'flex', flexFlow: 'row wrap' }}>
-					{this.state.forecast.map(weather => {
-						return <Forecast key={weather.date} data={weather} />;
-					})}
-				</div>
+				{hasForecastData && (
+					<div>
+						<div style={{ marginBottom: '10px' }}>
+							10 Day Forecast
+						</div>
+						<div style={{ display: 'flex', flexFlow: 'row wrap' }}>
+							{this.state.forecast.map(weather => {
+								return (
+									<Forecast
+										key={weather.date}
+										data={weather}
+									/>
+								);
+							})}
+						</div>
+					</div>
+				)}
+				{!hasForecastData && (
+					<div style={{ color: 'rosybrown' }}>
+						No Forecast Data Available
+					</div>
+				)}
 			</div>
 		);
 	}

@@ -9,10 +9,10 @@ npm install
 Install client dependencies
 
 ```
-cd client npm install
+cd client && npm install
 ```
 
-_or_
+**or**
 
 ```
 npm run setup

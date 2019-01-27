@@ -14,10 +14,11 @@ export default function Forecast(props) {
 		<div
 			style={{
 				padding: '15px',
-				margin: '10px',
-				border: '1px solid dodgerblue',
+				margin: '0 10px 10px 0',
+				border: '1px solid black',
 				textAlign: 'center',
-				minWidth: '175px'
+				minWidth: '175px',
+				boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)'
 			}}
 		>
 			<div>
@@ -25,8 +26,8 @@ export default function Forecast(props) {
 			</div>
 			<div style={{ marginBottom: '15px' }}>{props.data.text}</div>
 			<Icon />
-			<div style={{ marginTop: '15px' }}>High: {props.data.high}</div>
-			<div>Low: {props.data.low}</div>
+			<div style={{ marginTop: '15px' }}>High: {props.data.high}°</div>
+			<div>Low: {props.data.low}°</div>
 		</div>
 	);
 }
