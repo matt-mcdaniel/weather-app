@@ -11,13 +11,21 @@ const iconMap = {
 export default function Forecast(props) {
 	const Icon = iconMap[props.data.text];
 	return (
-		<div style={{ margin: '0 30px 30px 0' }}>
+		<div
+			style={{
+				padding: '15px',
+				margin: '10px',
+				border: '1px solid dodgerblue',
+				textAlign: 'center',
+				minWidth: '175px'
+			}}
+		>
 			<div>
 				{props.data.day} {props.data.date}
 			</div>
-			<div>{props.data.text}</div>
+			<div style={{ marginBottom: '15px' }}>{props.data.text}</div>
 			<Icon />
-			<div>High: {props.data.high}</div>
+			<div style={{ marginTop: '15px' }}>High: {props.data.high}</div>
 			<div>Low: {props.data.low}</div>
 		</div>
 	);
