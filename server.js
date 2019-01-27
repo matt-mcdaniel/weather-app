@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const city = require('./models/city');
-const forecast = require('./models/forecast');
+const City = require('./models/city');
+const Forecast = require('./models/forecast');
 
 const app = express();
 
@@ -10,8 +10,8 @@ const port = process.env.PORT || 3001;
 app.get('/api/forecast', (req, res) => {
 	const { query } = req;
 	if (query.location) {
-		const cityData = city.findByName(query.location);
-		const forecastData = forecast.findByCityId(cityData.id);
+		const cityData = City.findByName(query.location);
+		const forecastData = Forecast.findByCityId(cityData.id);
 
 		res.send({
 			location: cityData,
@@ -21,7 +21,7 @@ app.get('/api/forecast', (req, res) => {
 });
 
 app.get('/api/cities', (req, res) => {
-	res.send(city.getAll());
+	res.send(City.getAll());
 });
 
 if (process.env.NODE_ENV === 'production') {

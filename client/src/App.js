@@ -71,7 +71,7 @@ class App extends Component {
 		return (
 			<div style={{ padding: '45px' }}>
 				<label>
-					Select a city{' '}
+					Select a City{' '}
 					<select
 						onChange={this.handleChangeCity}
 						value={this.state.activeCityId}

@@ -1,6 +1,6 @@
 const { forecasts } = require('../data/forecasts.json');
 
-const forecast = {
+const Forecast = {
 	getAll: function() {
 		return forecasts;
 	},
@@ -11,4 +11,4 @@ const forecast = {
 	}
 };
 
-module.exports = forecast;
+module.exports = Forecast;

@@ -1,7 +1,7 @@
 const { cities } = require('../data/cities.json');
 const { lower, first, last, splitBy } = require('../client/src/lib/util');
 
-const city = {
+const City = {
 	getAll: function() {
 		return cities;
 	},
@@ -25,4 +25,4 @@ const city = {
 	}
 };
 
-module.exports = city;
+module.exports = City;
