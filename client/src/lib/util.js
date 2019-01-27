@@ -14,10 +14,6 @@ exports.splitBy = function(str, delimiter) {
 	return str.split(delimiter);
 };
 
-// exports.fromUrlFormat = function(str) {
-//   const cityStateArr = splitBy(str, ',');
-// };
-
 exports.toUrlFormat = function(city, region) {
 	const { lower } = exports;
 
@@ -26,4 +22,14 @@ exports.toUrlFormat = function(city, region) {
 
 	console.log(lower(urlFormat));
 	return lower(urlFormat);
+};
+
+// mountain+view,ca or mountain%20view,ca
+
+exports.normalizeLocationQuery = function(location) {
+	const trimmed = location.trim();
+	const withSpaces = decodeURI(trimmed);
+	const lower = withSpaces.toLowerCase();
+
+	return lower;
 };

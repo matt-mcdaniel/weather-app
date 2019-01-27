@@ -1,26 +1,30 @@
 const { cities } = require('../data/cities.json');
-const { lower, first, last, splitBy } = require('../client/src/lib/util');
+const { normalizeLocationQuery } = require('../client/src/lib/util');
 
 const City = {
 	getAll: function() {
 		return cities;
 	},
 	findByName: function(location) {
-		return cities.find(cityData => {
-			const split = splitBy(location, ',');
-			const city = lower(
-				decodeURI(
-					first(split)
-						.trim()
-						.replace(/\+/, ' ')
-				)
-			);
-			const region = lower(last(split).trim());
+		const normalized = normalizeLocationQuery(location);
 
-			return (
-				`${city},${region}` ===
-				`${lower(cityData.city)},${lower(cityData.region)}`
-			);
+		return cities.find(city => {
+			return normalized === `${city.city},${city.region}`.toLowerCase();
+		});
+	},
+
+	findByLatLon: function(lattitude, longitude) {
+		return cities.find(city => {
+			if (lattitude && longitude) {
+				return (
+					city.lat.toString() === lattitude &&
+					city.lon.toString() === longitude
+				);
+			} else if (lattitude) {
+				return city.lat.toString() === lattitude;
+			} else {
+				return city.lon.toString() === longitude;
+			}
 		});
 	}
 };

@@ -9,15 +9,23 @@ const port = process.env.PORT || 3001;
 
 app.get('/api/forecast', (req, res) => {
 	const { query } = req;
-	if (query.location) {
-		const cityData = City.findByName(query.location);
-		const forecastData = Forecast.findByCityId(cityData.id);
 
-		res.send({
-			location: cityData,
-			forecast: forecastData
-		});
+	let cityData;
+
+	if (query.location) {
+		cityData = City.findByName(query.location);
+	} else if (query.lat || query.lon) {
+		cityData = City.findByLatLon(query.lat, query.lon);
 	}
+
+	if (!cityData) {
+		return res.sendStatus(404);
+	}
+
+	res.send({
+		location: cityData,
+		forecast: Forecast.findByCityId(cityData.id)
+	});
 });
 
 app.get('/api/cities', (req, res) => {
