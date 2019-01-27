@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const city = require('./models/city');
+const forecast = require('./models/forecast');
 
 const app = express();
 
@@ -10,9 +11,11 @@ app.get('/api/forecast', (req, res) => {
 	const { query } = req;
 	if (query.location) {
 		const cityData = city.findByName(query.location);
+		const forecastData = forecast.findByCityId(cityData.id);
+
 		res.send({
 			location: cityData,
-			forecast: null
+			forecast: forecastData
 		});
 	}
 });

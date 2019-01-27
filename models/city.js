@@ -1,4 +1,4 @@
-const { cities } = require('../cities.json');
+const { cities } = require('../data/cities.json');
 const { lower, first, last, splitBy } = require('../client/src/lib/util');
 
 const city = {

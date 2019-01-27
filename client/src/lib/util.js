@@ -18,8 +18,9 @@ exports.splitBy = function(str, delimiter) {
 //   const cityStateArr = splitBy(str, ',');
 // };
 
-// exports.toUrlFormat = function(str) {
-//   let cityStateArr = splitBy(str, ',');
-//   cityStateArr = cityStateArr.map(str => lower(str.trim()));
-//   return cityStateArr.join(',').replace(/s/, '+');
-// };
+exports.toUrlFormat = function(city, region) {
+	const { lower } = exports;
+
+	const trimmed = [lower(city), lower(region)].map(str => str.trim());
+	return trimmed.join(',').replace(/s/, '+');
+};

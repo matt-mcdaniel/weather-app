@@ -1,0 +1,94 @@
+{
+	"forecasts": [
+		{
+			"day": "Tue",
+			"date": "1/29/19",
+			"low": 52,
+			"high": 61,
+			"text": "Rain",
+			"code": 12,
+			"id": "1"
+		},
+		{
+			"day": "Wed",
+			"date": "1/30/19",
+			"low": 51,
+			"high": 62,
+			"text": "Scattered Showers",
+			"code": 39,
+			"id": "1"
+		},
+		{
+			"day": "Thu",
+			"date": "1/31/19",
+			"low": 46,
+			"high": 60,
+			"text": "Sunny",
+			"code": 28,
+			"id": "1"
+		},
+		{
+			"date": "2/1/19",
+			"day": "Fri",
+			"low": 48,
+			"high": 61,
+			"text": "Cloudy",
+			"code": 11,
+			"id": "1"
+		},
+		{
+			"date": "2/2/19",
+			"day": "Sat",
+			"low": 47,
+			"high": 62,
+			"text": "Sunny",
+			"code": 12,
+			"id": "1"
+		},
+		{
+			"date": "2/3/19",
+			"day": "Sun",
+			"low": 48,
+			"high": 58,
+			"text": "Cloudy",
+			"code": 12,
+			"id": "1"
+		},
+		{
+			"date": "2/4/19",
+			"day": "Mon",
+			"low": 47,
+			"high": 58,
+			"text": "Rain",
+			"code": 12,
+			"id": "1"
+		},
+		{
+			"date": "2/5/19",
+			"day": "Tue",
+			"low": 46,
+			"high": 59,
+			"text": "Scattered Showers",
+			"id": "1",
+			"code": 39
+		},
+		{
+			"day": "Wed",
+			"date": "2/6/19",
+			"low": 49,
+			"high": 56,
+			"text": "Sunny",
+			"id": "1",
+			"code": 12
+		},
+		{
+			"day": "Thu",
+			"date": "2/7/19",
+			"low": 49,
+			"high": 59,
+			"text": "Sunny",
+			"id": "1",
+			"code": 39
+		}
+	]
+}

@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
-import { first, last, lower, splitBy } from './lib/util';
+import { toUrlFormat } from './lib/util';
 import { loadFromStorage, saveToStorage } from './lib/localStorage';
+import Forecast from './components/Forecast';
 
 class App extends Component {
 	state = {
-		activeCityId: '1'
+		activeCityId: '1',
+		cities: [],
+		forecast: []
 	};
 
 	async componentDidMount() {
+		const response = await fetch('/api/cities');
+		const data = await response.json();
+
+		this.setState({
+			cities: data
+		});
+
+		/**
+		 * Check if user has previously selected
+		 * a city, load corresponding forecast data
+		 */
 		const cityId = loadFromStorage('cityId');
 
 		if (cityId) {
@@ -16,19 +30,26 @@ class App extends Component {
 				activeCityId: cityId
 			});
 		}
-
-		const response = await fetch('/api/cities');
-		const data = await response.json();
-
-		console.log(data); // array of cities
-
-		this.setState({
-			cities: data
-		});
 	}
 
-	fetchForecast = cityId => {
+	getCityById = cityId => {
+		return this.state.cities.find(city => city.id === cityId);
+	};
+
+	fetchForecast = async cityId => {
+		const cityData = this.getCityById(cityId);
 		// fetch Yahoo API
+		const response = await fetch(
+			`/api/forecast?location=${toUrlFormat(
+				cityData.city,
+				cityData.region
+			)}`
+		);
+		const data = await response.json();
+
+		this.setState({
+			forecast: data.forecast
+		});
 	};
 
 	handleChangeCity = e => {
@@ -58,6 +79,11 @@ class App extends Component {
 						);
 					})}
 				</select>
+				<div style={{ display: 'flex', flexFlow: 'row wrap' }}>
+					{this.state.forecast.map(weather => {
+						return <Forecast key={weather.date} data={weather} />;
+					})}
+				</div>
 			</div>
 		);
 	}
