@@ -21,6 +21,9 @@ exports.splitBy = function(str, delimiter) {
 exports.toUrlFormat = function(city, region) {
 	const { lower } = exports;
 
-	const trimmed = [lower(city), lower(region)].map(str => str.trim());
-	return trimmed.join(',').replace(/s/, '+');
+	const joined = `${city.trim()},${region.trim()}`;
+	const urlFormat = joined.replace(/\s/, '+');
+
+	console.log(lower(urlFormat));
+	return lower(urlFormat);
 };

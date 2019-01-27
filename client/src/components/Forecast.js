@@ -16,9 +16,9 @@ export default function Forecast(props) {
 				{props.data.day} {props.data.date}
 			</div>
 			<div>{props.data.text}</div>
+			<Icon />
 			<div>High: {props.data.high}</div>
 			<div>Low: {props.data.low}</div>
-			<Icon />
 		</div>
 	);
 }

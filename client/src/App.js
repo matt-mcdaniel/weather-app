@@ -38,6 +38,7 @@ class App extends Component {
 
 	fetchForecast = async cityId => {
 		const cityData = this.getCityById(cityId);
+
 		// fetch Yahoo API
 		const response = await fetch(
 			`/api/forecast?location=${toUrlFormat(
@@ -58,6 +59,8 @@ class App extends Component {
 		this.setState({
 			activeCityId: cityId
 		});
+
+		this.fetchForecast(cityId);
 	};
 
 	render() {
@@ -67,18 +70,25 @@ class App extends Component {
 
 		return (
 			<div style={{ padding: '45px' }}>
-				<select
-					onChange={this.handleChangeCity}
-					value={this.state.activeCityId}
-				>
-					{this.state.cities.map(cityData => {
-						return (
-							<option key={cityData.id} value={cityData.id}>{`${
-								cityData.city
-							}, ${cityData.region}`}</option>
-						);
-					})}
-				</select>
+				<label>
+					Select a city{' '}
+					<select
+						onChange={this.handleChangeCity}
+						value={this.state.activeCityId}
+						style={{ marginBottom: '30px' }}
+					>
+						{this.state.cities.map(cityData => {
+							return (
+								<option
+									key={cityData.id}
+									value={cityData.id}
+								>{`${cityData.city}, ${
+									cityData.region
+								}`}</option>
+							);
+						})}
+					</select>
+				</label>
 				<div style={{ display: 'flex', flexFlow: 'row wrap' }}>
 					{this.state.forecast.map(weather => {
 						return <Forecast key={weather.date} data={weather} />;
