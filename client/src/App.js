@@ -23,13 +23,16 @@ class App extends Component {
 		 * Check if user has previously selected
 		 * a city, load corresponding forecast data
 		 */
-		const cityId = loadFromStorage('cityId');
+		const cityIdFromLocalStorage = loadFromStorage('cityId');
 
-		if (cityId) {
-			this.fetchForecast(cityId);
+		if (cityIdFromLocalStorage) {
+			this.fetchForecast(cityIdFromLocalStorage);
+
 			this.setState({
-				activeCityId: cityId
+				activeCityId: cityIdFromLocalStorage
 			});
+		} else {
+			this.fetchForecast(this.state.activeCityId);
 		}
 	}
 
@@ -65,10 +68,8 @@ class App extends Component {
 
 	render() {
 		const hasForecastData = !!this.state.forecast.length;
-
-		if (!this.state.cities) {
-			return <div>Loading...</div>;
-		}
+		const todaysWeather = this.state.forecast[0];
+		const forecastWeather = this.state.forecast.slice(1);
 
 		return (
 			<div style={{ padding: '45px' }}>
@@ -85,14 +86,14 @@ class App extends Component {
 						<div style={{ marginBottom: '10px' }}>
 							Today's Weather
 						</div>
-						<Forecast large data={this.state.forecast[0]} />
+						<Forecast large data={todaysWeather} />
 						<div
 							style={{ marginBottom: '10px', marginTop: '30px' }}
 						>
 							10 Day Forecast
 						</div>
 						<div style={{ display: 'flex', flexFlow: 'row wrap' }}>
-							{this.state.forecast.map(weather => {
+							{forecastWeather.map(weather => {
 								return (
 									<Forecast
 										key={weather.date}
