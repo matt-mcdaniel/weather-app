@@ -19,19 +19,24 @@ const City = {
             return normalized === `${city.city},${city.region}`.toLowerCase();
         });
     },
-
     findByLatLon: function(lattitude, longitude) {
-        return cities.find(city => {
-            if (lattitude && longitude) {
-                return (
-                    city.lat.toString() === lattitude && city.lon.toString() === longitude
-                );
-            } else if (lattitude) {
-                return city.lat.toString() === lattitude;
-            } else {
-                return city.lon.toString() === longitude;
-            }
-        });
+        if (lattitude && longitude) {
+            return cities.find(city => {
+                const latString = city.lat.toString();
+                const lonString = city.lon.toString();
+                return latString === lattitude && lonString === longitude;
+            });
+        } else if (lattitude) {
+            return cities.find(city => {
+                const latString = city.lat.toString();
+                return latString === lattitude;
+            });
+        } else {
+            return cities.find(city => {
+                const lonString = city.lon.toString();
+                return lonString === longitude;
+            });
+        }
     }
 };
 
