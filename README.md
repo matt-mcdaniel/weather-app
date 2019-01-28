@@ -20,6 +20,6 @@
 # Architecture Considerations in Scaling
 
 -   Data should be stored in a DB table, like Mongo or SQL, and accessed using unique keys
+-   Separate API and client into two distinct repos
 -   Better to organize client by feature instead of overarching "components" folder
 -   Determine better CSS/styling strategy; move styles outside of component file
--   Separate API and client into two distinct repos
