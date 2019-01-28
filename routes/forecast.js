@@ -17,7 +17,7 @@ module.exports = function(app) {
 			return res.sendStatus(404);
 		}
 
-		res.send({
+		res.json({
 			location: cityData,
 			forecast: Forecast.findByCityId(cityData.id)
 		});

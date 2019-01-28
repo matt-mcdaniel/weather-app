@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { toUrlFormat } from './lib/util';
 import { loadFromStorage, saveToStorage } from './lib/localStorage';
 import Forecast from './components/Forecast';
+import SelectCity from './components/SelectCity';
 
 class App extends Component {
 	state = {
@@ -39,7 +40,6 @@ class App extends Component {
 	fetchForecast = async cityId => {
 		const cityData = this.getCityById(cityId);
 
-		// fetch Yahoo API
 		const response = await fetch(
 			`/api/forecast?location=${toUrlFormat(
 				cityData.city,
@@ -74,33 +74,21 @@ class App extends Component {
 			<div style={{ padding: '45px' }}>
 				<label>
 					Select a City{' '}
-					<select
-						onChange={this.handleChangeCity}
-						value={this.state.activeCityId}
-						style={{
-							margin: '15px 0 30px',
-							display: 'block',
-							fontSize: '15px',
-							borderColor: 'dodgerblue',
-							height: '40px',
-							minWidth: '250px'
-						}}
-					>
-						{this.state.cities.map(cityData => {
-							return (
-								<option
-									key={cityData.id}
-									value={cityData.id}
-								>{`${cityData.city}, ${
-									cityData.region
-								}`}</option>
-							);
-						})}
-					</select>
+					<SelectCity
+						activeId={this.state.activeCityId}
+						handleChange={this.handleChangeCity}
+						cities={this.state.cities}
+					/>
 				</label>
 				{hasForecastData && (
 					<div>
 						<div style={{ marginBottom: '10px' }}>
+							Today's Weather
+						</div>
+						<Forecast large data={this.state.forecast[0]} />
+						<div
+							style={{ marginBottom: '10px', marginTop: '30px' }}
+						>
 							10 Day Forecast
 						</div>
 						<div style={{ display: 'flex', flexFlow: 'row wrap' }}>

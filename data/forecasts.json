@@ -5,7 +5,7 @@
 			"date": "1/29/19",
 			"low": 52,
 			"high": 61,
-			"text": "Rain",
+			"text": "Sunny",
 			"code": 12,
 			"id": "1"
 		},
@@ -89,6 +89,15 @@
 			"text": "Sunny",
 			"id": "1",
 			"code": 39
+		},
+		{
+			"day": "Fri",
+			"date": "2/8/19",
+			"low": 52,
+			"high": 62,
+			"text": "Sunny",
+			"id": "1",
+			"code": 99
 		}
 	]
 }

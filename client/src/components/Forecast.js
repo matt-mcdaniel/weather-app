@@ -8,19 +8,28 @@ const iconMap = {
 	Sunny: Icons.Sun
 };
 
+const styles = {
+	padding: '15px',
+	margin: '0 10px 10px 0',
+	border: '1px solid black',
+	textAlign: 'center',
+	minWidth: '175px',
+	boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)'
+};
+
+const largeStyles = {
+	...styles,
+	backgroundColor: 'dodgerblue',
+	color: 'white',
+	border: 'none',
+	maxWidth: '250px'
+};
+
 export default function Forecast(props) {
 	const Icon = iconMap[props.data.text];
+
 	return (
-		<div
-			style={{
-				padding: '15px',
-				margin: '0 10px 10px 0',
-				border: '1px solid black',
-				textAlign: 'center',
-				minWidth: '175px',
-				boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)'
-			}}
-		>
+		<div style={props.large ? largeStyles : styles}>
 			<div>
 				{props.data.day} {props.data.date}
 			</div>
