@@ -22,6 +22,7 @@ npm run setup
 
 # Architecture Considerations in Scaling
 
--   Data should be stored in a DB table and accessed using unique keys
+-   Data should be stored in a DB table, like Mongo or SQL, and accessed using unique keys
 -   Better to organize client by feature instead of overarching "components" folder
 -   Determine better CSS/styling strategy; move styles outside of component file
+-   Create a "routes" or "controllers" folder to better organize API endpoints
